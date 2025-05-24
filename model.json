@@ -1,0 +1,441 @@
+{
+    "metadata": {
+        "name": "model",
+        "langVersion": "1.0.0",
+        "langID": "org.mal-lang.coreLang",
+        "malVersion": "0.1.0-SNAPSHOT",
+        "MAL-Toolbox Version": "0.3.11",
+        "info": "Created by the mal-toolbox model python module."
+    },
+    "assets": {
+        "0": {
+            "name": "DERFirmware",
+            "type": "Application",
+            "associated_assets": {
+                "hostHardware": {
+                    "1": "DERController"
+                },
+                "appConnections": {
+                    "8": "ManageDER"
+                },
+                "hostApp": {
+                    "7": "HES"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1263.0,
+                    "y": 359.0
+                }
+            }
+        },
+        "1": {
+            "name": "DERController",
+            "type": "Hardware",
+            "associated_assets": {
+                "sysExecutedApps": {
+                    "0": "DERFirmware"
+                },
+                "physicalZones": {
+                    "4": "PublicField"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 976.0,
+                    "y": 359.0
+                }
+            }
+        },
+        "2": {
+            "name": "DistributionIED",
+            "type": "Hardware",
+            "associated_assets": {
+                "sysExecutedApps": {
+                    "3": "IEDFirmware"
+                },
+                "physicalZones": {
+                    "4": "PublicField"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 612.0,
+                    "y": 355.0
+                }
+            }
+        },
+        "3": {
+            "name": "IEDFirmware",
+            "type": "Application",
+            "associated_assets": {
+                "hostHardware": {
+                    "2": "DistributionIED"
+                },
+                "appConnections": {
+                    "10": "ConnIED"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 323.0,
+                    "y": 356.0
+                }
+            }
+        },
+        "4": {
+            "name": "PublicField",
+            "type": "PhysicalZone",
+            "associated_assets": {
+                "hardwareSystems": {
+                    "1": "DERController",
+                    "5": "DistributionDataCollector",
+                    "2": "DistributionIED"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 784.6006497584856,
+                    "y": 570.3998588735003
+                }
+            }
+        },
+        "5": {
+            "name": "DistributionDataCollector",
+            "type": "Hardware",
+            "associated_assets": {
+                "physicalZones": {
+                    "4": "PublicField"
+                },
+                "sysExecutedApps": {
+                    "6": "DistributionDataCollectorFirmware"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 784.6006497584856,
+                    "y": 123.94764865816566
+                }
+            }
+        },
+        "6": {
+            "name": "DistributionDataCollectorFirmware",
+            "type": "Application",
+            "associated_assets": {
+                "hostHardware": {
+                    "5": "DistributionDataCollector"
+                },
+                "hostApp": {
+                    "7": "HES"
+                },
+                "appConnections": {
+                    "9": "ConnDDC"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 512.6378478483357,
+                    "y": 121.54089819878381
+                }
+            }
+        },
+        "7": {
+            "name": "HES",
+            "type": "Application",
+            "associated_assets": {
+                "appExecutedApps": {
+                    "6": "DistributionDataCollectorFirmware",
+                    "0": "DERFirmware"
+                },
+                "appConnections": {
+                    "9": "ConnDDC",
+                    "10": "ConnIED",
+                    "8": "ManageDER"
+                },
+                "hostApp": {
+                    "12": "HMI"
+                },
+                "networks": {
+                    "19": "ControlRoomNet"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1203.671913835957,
+                    "y": -249.75642087821046
+                }
+            }
+        },
+        "8": {
+            "name": "ManageDER",
+            "type": "ConnectionRule",
+            "associated_assets": {
+                "applications": {
+                    "7": "HES",
+                    "0": "DERFirmware"
+                },
+                "networks": {
+                    "11": "FieldNetwork"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1533.7464788732395,
+                    "y": 160.6362883181442
+                }
+            }
+        },
+        "9": {
+            "name": "ConnDDC",
+            "type": "ConnectionRule",
+            "associated_assets": {
+                "applications": {
+                    "7": "HES",
+                    "6": "DistributionDataCollectorFirmware"
+                },
+                "networks": {
+                    "11": "FieldNetwork"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 515.0445983077175,
+                    "y": -16.847253215673007
+                }
+            }
+        },
+        "10": {
+            "name": "ConnIED",
+            "type": "ConnectionRule",
+            "associated_assets": {
+                "applications": {
+                    "7": "HES",
+                    "3": "IEDFirmware"
+                },
+                "networks": {
+                    "11": "FieldNetwork"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 321.2725766362884,
+                    "y": -121.02734051367027
+                }
+            }
+        },
+        "11": {
+            "name": "FieldNetwork",
+            "type": "Network",
+            "associated_assets": {
+                "netConnections": {
+                    "9": "ConnDDC",
+                    "10": "ConnIED",
+                    "8": "ManageDER"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1114.3254626938,
+                    "y": -9.62700183752743
+                }
+            }
+        },
+        "12": {
+            "name": "HMI",
+            "type": "Application",
+            "associated_assets": {
+                "appExecutedApps": {
+                    "7": "HES"
+                },
+                "highPrivAppIAMs": {
+                    "13": "Grid Operator"
+                },
+                "appConnections": {
+                    "16": "DataGridManagement"
+                },
+                "networks": {
+                    "19": "ControlRoomNet"
+                },
+                "vulnerabilities": {
+                    "22": "SoftwareVulnerability"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 610.1112414533009,
+                    "y": -239.47167070849483
+                }
+            }
+        },
+        "13": {
+            "name": "Grid Operator",
+            "type": "Identity",
+            "associated_assets": {
+                "highPrivApps": {
+                    "12": "HMI"
+                },
+                "credentials": {
+                    "14": "GridOperatorCredentials"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 328.52143770562355,
+                    "y": -241.87842116787667
+                }
+            }
+        },
+        "14": {
+            "name": "GridOperatorCredentials",
+            "type": "Credentials",
+            "associated_assets": {
+                "identities": {
+                    "13": "Grid Operator"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 326.1146872462417,
+                    "y": -348.97881661036934
+                }
+            }
+        },
+        "15": {
+            "name": "CRM",
+            "type": "Application",
+            "associated_assets": {
+                "appConnections": {
+                    "16": "DataGridManagement"
+                },
+                "networks": {
+                    "17": "Enterprise Network"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 313.20019497084127,
+                    "y": -734.1527505967885
+                }
+            }
+        },
+        "16": {
+            "name": "DataGridManagement",
+            "type": "ConnectionRule",
+            "associated_assets": {
+                "applications": {
+                    "15": "CRM",
+                    "12": "HMI",
+                    "20": "DMSComputer"
+                },
+                "networks": {
+                    "17": "Enterprise Network"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 389.34519650044945,
+                    "y": -488.4773683031469
+                }
+            }
+        },
+        "17": {
+            "name": "Enterprise Network",
+            "type": "Network",
+            "associated_assets": {
+                "applications": {
+                    "15": "CRM",
+                    "18": "RoutingFirewall:18"
+                },
+                "netConnections": {
+                    "16": "DataGridManagement"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 684.9306518179594,
+                    "y": -733.4074787731118
+                }
+            }
+        },
+        "18": {
+            "name": "RoutingFirewall:18",
+            "type": "RoutingFirewall",
+            "associated_assets": {
+                "networks": {
+                    "19": "ControlRoomNet",
+                    "17": "Enterprise Network"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1155.6250038663745,
+                    "y": -476.9494264942412
+                }
+            }
+        },
+        "19": {
+            "name": "ControlRoomNet",
+            "type": "Network",
+            "associated_assets": {
+                "applications": {
+                    "12": "HMI",
+                    "7": "HES",
+                    "20": "DMSComputer",
+                    "18": "RoutingFirewall:18"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 790.1839781374435,
+                    "y": -478.42048130867033
+                }
+            }
+        },
+        "20": {
+            "name": "DMSComputer",
+            "type": "Application",
+            "associated_assets": {
+                "appConnections": {
+                    "16": "DataGridManagement"
+                },
+                "networks": {
+                    "19": "ControlRoomNet"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 1080.5641105164611,
+                    "y": -725.5886357158292
+                }
+            }
+        },
+        "22": {
+            "name": "SoftwareVulnerability",
+            "type": "SoftwareVulnerability",
+            "associated_assets": {
+                "application": {
+                    "12": "HMI"
+                }
+            },
+            "extras": {
+                "position": {
+                    "x": 3.12753722291302,
+                    "y": -344.0290945204363
+                }
+            }
+        }
+    },
+    "attackers": {
+        "21": {
+            "name": "Attacker:21",
+            "entry_points": {
+                "Grid Operator": {
+                    "asset_id": 13,
+                    "attack_steps": [
+                        "assume"
+                    ]
+                }
+            }
+        }
+    }
+}

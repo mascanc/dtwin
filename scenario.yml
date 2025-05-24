@@ -1,0 +1,16 @@
+lang_file: org.mal-lang.coreLang-1.0.0.mar
+model_file: model.json
+
+rewards:
+    'DERFirmware:denyFromNetworkingAsset': 10
+agents:
+    'Attacker1':
+        type: attacker
+#        agent_class: KeyboardAgent
+        agent_class: BreadthFirstAttacker
+        entry_points:
+            - 'SoftwareVulnerability:attemptExploit'
+            
+    'Defender1':
+        type: defender
+        agent_class: PassiveAgent
